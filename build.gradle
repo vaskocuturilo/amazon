@@ -14,6 +14,8 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     implementation group: 'org.aeonbits.owner', name: 'owner', version: '1.0.12'
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.1.1'
+    implementation group: 'org.jooq', name: 'joor', version: '0.9.14'
+
 
 }
 
