@@ -1,6 +1,7 @@
 package base;
 
 import core.Page;
+import org.junit.gen5.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +11,7 @@ import waiters.WaitConditions;
 
 import java.util.function.Function;
 
+import static org.junit.gen5.api.Assertions.assertTrue;
 import static waiters.WaitConditions.visible;
 
 public class BasePage implements Page {
@@ -35,6 +37,14 @@ public class BasePage implements Page {
 
     private void click(final By locator, final WaitConditions condition) {
         elementOf(waitFor(locator, "", condition));
+    }
+
+    protected void clickAndType(final By locator, final CharSequence text) {
+        webDriver.findElement(locator).sendKeys(text);
+    }
+
+    protected void getLocatorText(final By locator, final String value) {
+        assertTrue(webDriver.findElement(locator).getText().contains(value));
     }
 
     private static <T> WebElement elementOf(final T element) {
