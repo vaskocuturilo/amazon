@@ -19,7 +19,6 @@ dependencies {
     implementation group: 'org.junit', name: 'junit5-engine', version: '5.0.0-ALPHA'
     implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '5.0.3'
     implementation group: 'io.github.sskorol', name: 'test-data-supplier', version: '1.9.7'
-
 }
 
 test {
