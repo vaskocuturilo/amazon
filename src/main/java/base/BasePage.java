@@ -12,6 +12,7 @@ import waiters.WaitConditions;
 import java.util.function.Function;
 
 import static org.junit.gen5.api.Assertions.assertTrue;
+import static waiters.WaitConditions.enabled;
 import static waiters.WaitConditions.visible;
 
 public class BasePage implements Page {
@@ -35,8 +36,17 @@ public class BasePage implements Page {
         click(locator, visible);
     }
 
+    public void typeText(final By locator, final String text) {
+        typeOf(locator, text, enabled);
+    }
+
     private void click(final By locator, final WaitConditions condition) {
+
         elementOf(waitFor(locator, "", condition));
+    }
+
+    private void typeOf(final By locator, final CharSequence text, final WaitConditions condition) {
+        elementOf(waitFor(locator, "", condition)).sendKeys(text);
     }
 
     protected void clickAndType(final By locator, final CharSequence text) {
@@ -55,4 +65,5 @@ public class BasePage implements Page {
         return (R) webDriverWait.ignoring(StaleElementReferenceException.class)
                 .until((Function<WebDriver, ?>) condition.getType().apply(arg1, arg2));
     }
+
 }

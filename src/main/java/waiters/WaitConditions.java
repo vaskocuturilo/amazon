@@ -1,6 +1,7 @@
 package waiters;
 
 import lombok.RequiredArgsConstructor;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -9,10 +10,11 @@ import java.util.function.Function;
 
 @RequiredArgsConstructor
 public enum WaitConditions {
-
-    visible(ExpectedConditions::visibilityOfElementLocated),
+    allPresent(ExpectedConditions::presenceOfAllElementsLocatedBy),
+    enabled((Function<By, ExpectedCondition<?>>) ExpectedConditions::elementToBeClickable),
     present(ExpectedConditions::presenceOfElementLocated),
-    allPresent(ExpectedConditions::presenceOfAllElementsLocatedBy);
+    visible(ExpectedConditions::visibilityOfElementLocated);
+
 
     private final BiFunction<?, ?, ExpectedCondition<?>> type;
 
